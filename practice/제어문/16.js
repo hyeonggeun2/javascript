@@ -2,7 +2,7 @@
 console.log('\n16번 문제');
 var star = '';
 var line = 5;
-var revLine = 0;
+var revLine;
 for (var i = 1; i <= line; i++) {
   revLine = (line - i) * 2 + 1;
   for (var k = 1; k <= i - 1; k++)
