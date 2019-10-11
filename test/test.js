@@ -1,18 +1,29 @@
-// 콜백 함수를 전달받는 함수
-function print(f) {
-  var string = 'Hello';
-  // 콜백 함수를 전달받는 함수가 콜백 함수의 호출 시기를 결정하고 호출
-  return f(string);
+function draw(pattern, line){
+  var symbol = 'x';
+  return pattern(line, symbol);
 }
 
-// print 함수에 콜백 함수를 전달하면서 호출
-var res1 = print(function (a) {
-  return a.toUpperCase();
-});
+function pattern1(line, symbol) {
+  var result = '';
+  for (var i = 1; i <= line; i++){
+    for (var j = i; j <= line; j++)
+      result += symbol;
+    result += '\n';
+  }
+  console.log(result);
+}
 
-// print 함수에 콜백 함수를 전달하면서 호출
-var res2 = print(function (str) {
-  return str.toLowerCase();
-});
+function pattern2(line, symbol) {
+  var result = '';
+  for (var i = 1; i <= line; i++){
+    for (var j = i; j <= line; j++)
+      result += ' ';
+    for (var j = 1; j <= i; j++)
+      result += symbol;
+    result += '\n';
+  }
+  console.log(result);
+}
 
-console.log(res1, res2); // HELLO hello
+draw(pattern1, 5);
+draw(pattern2, 5);
