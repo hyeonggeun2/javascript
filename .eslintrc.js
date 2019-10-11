@@ -28,6 +28,8 @@ module.exports = {
     "block-scoped-var" : 0,
     "no-redeclare" : 0,
     "curly" : 0,
-    "nonblock-statement-body-position" : 0
+    "nonblock-statement-body-position" : 0,
+    "prefer-arrow-callback" : 0,
+    "func-names" : 0
   }
 };
