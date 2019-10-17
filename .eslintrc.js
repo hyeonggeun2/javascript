@@ -19,17 +19,17 @@ module.exports = {
     "no-underscore-dangle": "warn",
     "no-plusplus": [ "error", { "allowForLoopAfterthoughts": true }],
     "comma-dangle": [ "error", "never"],
-    "no-console" : "off",
-    "no-var" : 0, // 0: off 1: warn 2: error
+    "no-console" : "off",// 0: off 1: warn 2: error
     "eol-last" : 0,
     "space-before-blocks" : 0,
     "no-plusplus" : 0,
-    "vars-on-top" : 0,
-    "block-scoped-var" : 0,
     "no-redeclare" : 0,
     "curly" : 0,
     "nonblock-statement-body-position" : 0,
     "prefer-arrow-callback" : 0,
-    "func-names" : 0
+    "func-names" : 0,
+    "no-else-return" : 0,
+    "prefer-template" : 0,
+    "no-restricted-globals" : 0
   }
 };
