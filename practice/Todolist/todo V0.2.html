@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todos</title>
+  <style>
+    .cb:checked + .content {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <input class="input" type="text" placeholder="Enter todo!">
+  <ul class="todos"></ul>
+
+  <script>
+    let todos = [];
+    const $todos = document.querySelector('.todos');
+    const $input = document.querySelector('.input');
+
+    // DOMs
+    function render() {
+      let html = '';
+      todos.forEach((todo) => {
+        html += `
+        <li id="${todo.id}">
+          <label>
+            <input type="checkbox" class="cb" ${todo.completed ? 'checked' : ''}>
+            <span class="content">${todo.content}</span>
+          </label>
+          <button class="remove">X</button>
+        </li>`;
+      });
+      $todos.innerHTML = html;
+    }
+
+    const getTodos = function () {
+      todos = [
+        { id: 1, content: 'HTML', completed: false },
+        { id: 2, content: 'CSS', completed: true },
+        { id: 3, content: 'Javascript', completed: false }
+      ];
+      render();
+    };
+
+    const addTodo = function (e) {
+      if (e.keyCode !== 13 || $input.value.trim() === '') return;
+
+      todos = [...todos, { id: todos.length + 1, content: `${$input.value}`, completed: false }];
+      $input.value = '';
+      render();
+    };
+
+    const removeTodo = function (e) {
+      if (!e.target.classList.contains('remove')) return;
+      const id = +e.target.parentNode.id;
+
+      todos = todos.filter((todo) => todo.id !== id);
+      render();
+    };
+
+    const toggleCheckbox = function (e) {
+      const id = +e.target.parentNode.parentNode.id;
+      todos = todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo));
+
+      render();
+    };
+
+    // Events 입력하면 추가/ X누르면 삭제 / 체크
+    window.onload = getTodos;
+    $input.onkeyup = addTodo;
+    $todos.onclick = removeTodo;
+    $todos.onchange = toggleCheckbox;
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todos</title>
+  <style>
+    .cb:checked + .content {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <input class="input" type="text" placeholder="Enter todo!">
+  <ul class="todos"></ul>
+  <script>
+    const $inputTodo = document.querySelector('.input');
+    const $todos = document.querySelector('.todos');
+
+
+    $inputTodo.onkeyup = function (e){
+      if (e.keyCode !== 13 || $inputTodo.value.trim() === '') return;
+
+      $todos.innerHTML += `
+      <li>
+        <label>
+          <input class="cb" type="checkbox">
+          <span class="content">${$inputTodo.value}</span>
+        </label>
+          <button class="remove">X</button>
+      </li>`;
+
+      $inputTodo.value = '';
+    };
+
+    $todos.onclick = function ({ target }){
+      if (!target.classList.contains('remove')) return;
+
+      $todos.removeChild(target.parentNode);
+    };
+  </script>
+</body>
+</html>
