@@ -1,9 +1,8 @@
-function alphaString46(s) {
-  if (s === undefined)
+function alphaString46(s = '') {
+  if (s.length < 4 || s.length > 7)
     return false;
-  if ((s.length >= 4) && (s.length <= 6) && (!isNaN(s * 1)))
-    return true;
-  else return false;
+  const myRegExp = /^\d+$/;
+  return myRegExp.test(s);
 }
 
 console.log(alphaString46('1234')); // true
